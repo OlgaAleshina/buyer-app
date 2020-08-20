@@ -1,0 +1,15 @@
+.dashboard {
+    display: "flex";
+  }
+  
+  .dashboard__box {
+    padding: "10px";
+    width: "40%";
+    background: "#aaa";
+  }
+  
+  .dashboard__list {
+  }
+  
+  dashboard__list_item {
+  }
