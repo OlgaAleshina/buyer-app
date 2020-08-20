@@ -1,0 +1,5 @@
+.terminal-form {
+    display: grid;
+    grid-template-columns: 40%;
+    justify-content: center;
+  }

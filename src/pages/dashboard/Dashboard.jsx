@@ -1,42 +1,12 @@
 import React from "react";
 //import logo from "../src/assets/logo.svg";
 import "./Dashboard.css";
+import Terminal from "./terminal/Terminal";
+import Buyers from "./buyers/Buyers";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 
-/* Home component */
-const Terminal = () => (
-    <div>
-        <h2>Terminal</h2>
-    </div>
-);
 
-const Buyers = ({ match }) => {
-    return (
-        <div>
-            Buyers
-      {/*<ul>
-        <li>
-          <Link to={`${match.url}/shoes`}>Shoes</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/boots`}>Boots</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/footwear`}>Footwear</Link>
-        </li>
-      </ul>
-      <Route
-        path={`${match.path}/:name`}
-        render={({ match }) => (
-          <div>
-            {" "}
-            <h3> {match.params.name} </h3>
-          </div>
-        )}
-        />*/}
-        </div>
-    );
-};
+
 
 const Dashboard = ({ match }) => {
     let { path, url } = useRouteMatch();

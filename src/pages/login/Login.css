@@ -5,7 +5,7 @@
   }
   
   .input {
-    border: 0;
+    
     padding: 10px;
     margin: 10px 0;
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
@@ -15,11 +15,11 @@
   }
   
   .input:hover {
-    border: 1px solid #aaa;
+    border: 3px solid #aaa;
   }
   
   .input:focus {
-    border: 1px solid #aaa;
+    border: 3px solid #aaa;
     outline: none;
   }
   
