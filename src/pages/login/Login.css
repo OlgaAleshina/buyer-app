@@ -1,11 +1,51 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
 .login-form {
+    display: grid;
+    grid-template-columns: 70%;
+    width: 40%;
+    justify-content: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.63rem;
+  }
+
+  .login-logo {
+    width: 15rem; /*40vmin*/;
+    padding: 1rem;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .login-logo {
+      animation: login-logo-spin infinite 20s linear;
+    }
+  }
+  
+    
+  @keyframes login-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  /*.login-form {
     display: grid;
     grid-template-columns: 40%;
     justify-content: center;
   }
   
   .input {
-    
+    border: 1px #aaa;
     padding: 10px;
     margin: 10px 0;
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
@@ -15,11 +55,11 @@
   }
   
   .input:hover {
-    border: 3px solid #aaa;
+    border: 1px solid #aaa;
   }
   
   .input:focus {
-    border: 3px solid #aaa;
+    border: 1px solid #aaa;
     outline: none;
   }
   
@@ -39,4 +79,4 @@
   .form__button:hover {
     background-color: #aaa;
   }
-  
+  */

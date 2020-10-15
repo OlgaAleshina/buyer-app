@@ -1,5 +1,37 @@
 .terminal-form {
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 2rem;
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .terminal-form {
     display: grid;
-    grid-template-columns: 40%;
-    justify-content: center;
+    grid-template-columns: 50% 50%;
+    justify-content: start;
+    padding: 2rem;
   }
+}
+
+.terminal-list {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+
+.terminal-list__button {
+  border-radius: 50%;
+  color: #cc0000;
+  background-color: white;
+  width: 40px;
+}
+
+.terminal-list__button:hover {
+  color: white;
+  background-color: #b30000;
+  max-width: 50px;
+}

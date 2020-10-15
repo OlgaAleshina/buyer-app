@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import logo from "../../assets/gitlogo-gradient.png";
 import "./Login.css";
 
 const Login = () => {
-    const [state, setState] = useState({
-        username: "",
+    const [user, setUser] = useState({
+        name: "olgaaleshina",
         password: "",
         isAuthentificated: false,
         isFormValid: false,
@@ -17,82 +19,104 @@ const Login = () => {
     const [avatarUrl, setAvatarUrl] = useState('');
     const [error, setError] = useState(false);
 
+
+
+
+
     const handleInput = (e) => {
         const { id, value } = e.target;
-        setState((prevState) => ({
+        setUser((prevState) => ({
             ...prevState,
             [id]: value
         }));
+
+
     };
-
-    async function fetchUserData() {
-        const username = state.username;
-        const res = await fetch(`https://api.github.com/users/${username}`);
-        res
-            .json()
-            .then(res => setAvatarUrl(res.avatar_url))
-            .catch(err => setError(err));
-    }
-
-
-    console.log("result of fetching", avatarUrl)
     const validateForm = () => {
-        const { password } = state;
+        const password = user.password;
         const isPasswordValid = password.match(
             /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/
         );
 
         if (isPasswordValid) {
-            setState((prevState) => ({
+            setUser((prevState) => ({
                 ...prevState,
                 isFormValid: true
             }));
         }
     };
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const result = await axios(`https://api.github.com/users/${user.name}`);
+            setAvatarUrl(result.data.avatar_url);
+        };
+        fetchData();
+    }, []);
+
+    /*async function fetchUserData(username) {
+      const res = await fetch(`https://api.github.com/users/${username}`);
+      res
+        .json()
+        .then((res) => setAvatarUrl(res.avatar_url))
+        .catch((err) => setError(err));
+    }*/
+
+    console.log("result of fetching", avatarUrl);
+
+
+
+
+
     const handleLogin = (e) => {
         //e.preventDefault();
-        setState((prevState) => ({
+        setUser((prevState) => ({
             ...prevState,
             isAuthentificated: true
         }));
-        fetchUserData();
+        //fetchUserData(state.username);
         validateForm();
-        if (state.isFormValid) {
-            return history.push("/dashboard");
-        } else {
-            return alert("there is an error");
-        }
+        history.push({ pathname: "/dashboard", state: { avatarUrl } });
+        //if (user.isFormValid) {
+        //    return history.push("/dashboard");
+        //} else {
+        //    return console.log("there is an error");
+        //}
 
     };
 
     return (
-        <form className="login-form">
-            <label>Username:</label>
-            <input
-                className="input"
-                type="text"
-                id="username"
-                name="username"
-                required={true}
-                value={state.username}
-                onChange={handleInput}
-            />
+        <div className="login">
+            <img src={logo} className="App-logo login-logo" alt="logo" />
+            <form className="login-form">
+                <label>Username:</label>
+                <input
+                    className="input"
+                    type="text"
+                    id="name"
+                    name="name"
+                    required={true}
+                    value={user.username}
+                    onChange={handleInput}
+                />
 
-            <label>Password</label>
-            <input
-                className="input"
-                id="password"
-                name="password"
-                reguired={true}
-                value={state.password}
-                onChange={handleInput}
-                placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
-            />
+                <label>Password</label>
+                <input
+                    className="input"
+                    id="password"
+                    name="password"
+                    reguired={true}
+                    value={user.password}
+                    onChange={handleInput}
+                    placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+                />
 
-            <button className="form__button" type="button" onClick={handleLogin}>
-                Login
+                <button className="button" type="button" onClick={handleLogin}>
+                    Login
       </button>
-        </form>
+            </form>
+        </div>
     );
 };
 

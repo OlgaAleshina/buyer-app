@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import Login from "./pages/login/Login";
 import Dashboard from "./pages/dashboard/Dashboard";
 import {
@@ -38,7 +37,7 @@ function App() {
   return (
     <Route>
       <div className="App">
-        <img src={logo} className="App-logo" alt="logo" /> <br />
+
 
         <Switch>
 

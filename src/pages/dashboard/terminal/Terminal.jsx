@@ -1,64 +1,82 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./Terminal.css";
 
 
 const Terminal = () => {
 
-    const [state, setState] = useState({
-        terminalName: "",
-        terminalDescr: "",
+    const [terminal, setTerminal] = useState({
+        name: "",
+        description: "",
     });
+    const [terminalList, setTerminalList] = useState([]);
 
     const handleInput = (e) => {
         const { id, value } = e.target;
-        setState((prevState) => ({
+        setTerminal((prevState) => ({
             ...prevState,
             [id]: value
         }));
     };
 
-    const handleSubmit = () => {
-        return (<dl>
-            <dt>{state.terminalName}</dt>
-            <dd>{state.terminalDescr}</dd>
-            <dt>Milk</dt>
-            <dd>- white cold drink</dd>
-        </dl>)
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newTerminal = {
+            id: uuidv4(),
+            name: terminal.name,
+            description: terminal.description,
+        }
+        setTerminalList((prevState) => ({
+            ...prevState,
+            newTerminal
+        }));
+
+        setTerminal({
+            name: "",
+            description: ""
+        })
     }
 
     return (
-        <div>
+        <section>
+            <h2>Добавьте терминал</h2>
             <form className="terminal-form">
-                <label>Название терминала</label>
+                <label className="terminal-form__item">Название терминала</label>
                 <input
-                    className="input"
+                    className="terminal-form__item input "
                     type="text"
-                    id="terminalName"
-                    name="terminalName"
-                    value={state.terminalName}
+                    id="name"
+                    name="name"
+                    value={terminal.name}
                     onChange={handleInput}
                 />
 
-                <label>Описание</label>
+                <label className="terminal-form__item">Описание</label>
                 <input
-                    className="input"
-                    id="terminalDescr"
-                    name="terminalDescr"
+                    className="terminal-form__item input input_textarea"
+                    id="description"
+                    name="description"
                     reguired={true}
-                    value={state.terminalDescr}
+                    value={terminal.description}
                     onChange={handleInput}
-
                 />
 
-                <button className="terminal-form__button" type="button" onClick={handleSubmit} >
+                <button className="button" type="button" onClick={handleSubmit}>
                     +
-      </button>
+        </button>
             </form>
             <h2>Список терминалов</h2>
+            <div className="terminal-list">
+                <dl className="terminal-list__el">
+                    <dt>Milk </dt>
+                    <dd> white cold drink</dd>
+                    <button className="button terminal-list__button"> X </button>
+                </dl>
 
+            </div>
+        </section>
+    );
 
-        </div>
-    )
 };
 
 export default Terminal;
